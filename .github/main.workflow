@@ -16,10 +16,10 @@ action "build" {
 }
 
 action "tag" {
-  uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
+  uses = "actions/docker/tag@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["build"]
 
-  args = "tag my_image awseward/try_docker_actions:$GITHUB_SHA"
+  args = "my_image awseward/try_docker_actions --env"
 }
 
 action "push" {
@@ -28,4 +28,5 @@ action "push" {
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 
   args = ["push awseward/try_docker_actions:$GITHUB_SHA"]
+  runs = ["SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-6) /entrypoint.sh push awseward/try_docker_actions:$SHORT_SHA"]
 }
