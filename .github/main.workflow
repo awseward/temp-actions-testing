@@ -1,6 +1,6 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["GitHub Action for Docker-1"]
+  resolves = ["images"]
 }
 
 action "login" {
@@ -8,20 +8,20 @@ action "login" {
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
 
-action "GitHub Action for Docker" {
+action "build" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["login"]
   args = "build -t my_image ."
 }
 
-action "Docker Tag" {
+action "tag" {
   uses = "actions/docker/tag@c08a5fc9e0286844156fefff2c141072048141f6"
-  needs = ["GitHub Action for Docker"]
   args = "my_image awseward/my_image --env"
+  needs = ["build"]
 }
 
-action "GitHub Action for Docker-1" {
+action "images" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
-  needs = ["Docker Tag"]
   args = "images"
+  needs = ["tag"]
 }
