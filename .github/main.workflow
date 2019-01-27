@@ -27,5 +27,5 @@ action "push" {
   needs = ["tag"]
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 
-  args = "push my_image awseward/try_docker_actions:$(echo $GITHUB_SHA | cut -c1-6)"
+  args = "push awseward/try_docker_actions:$(echo $GITHUB_SHA | cut -c1-6)"
 }
