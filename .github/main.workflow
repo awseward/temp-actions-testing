@@ -27,6 +27,5 @@ action "push" {
   needs = ["tag"]
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 
-  args = ["push awseward/try_docker_actions:$GITHUB_SHA"]
-  runs = ["SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-6) /entrypoint.sh push awseward/try_docker_actions:$SHORT_SHA"]
+  runs = ["SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-6) echo $SHORT_SHA"]
 }
