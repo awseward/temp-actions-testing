@@ -27,5 +27,6 @@ action "push" {
   needs = ["tag"]
   secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 
-  runs = ["SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-6) echo $SHORT_SHA"]
+  # runs = ["SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-6) echo $SHORT_SHA"]
+  runs = ["echo UHHHHHHHHHHHHHHHHHHHHHH && ls -lah"]
 }
