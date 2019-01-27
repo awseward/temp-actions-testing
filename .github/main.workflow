@@ -19,7 +19,7 @@ action "tag" {
   uses = "actions/docker/cli@c08a5fc9e0286844156fefff2c141072048141f6"
   needs = ["build"]
 
-  args = "tag my_image awseward/try_docker_actions:$GITHUB_SHA --env"
+  args = "tag my_image awseward/try_docker_actions:$GITHUB_SHA"
 }
 
 action "push" {
